@@ -7,7 +7,7 @@ This is because of something called streaming technique. YouTube basically divid
 * Progressive
 * DASH (also referred to as “adaptive”)
 
-The later one is the challange, as the audio is seperated from the video in this one.
+The latter one is the challange, as the audio is seperated from the video in this one.
 
 This projects checks whether the video is DASH or not. If not then user can download the video right away. On the other hand if the video is DASH then it will download the video
 and audio seperately, merge them together and send you the link to the final file to your e-mail id.
