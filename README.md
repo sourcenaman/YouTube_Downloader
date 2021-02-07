@@ -1,6 +1,7 @@
 <!-- LIVE DEMO -->
 ## Live Demo
-[Click Here](https://sheltered-earth-45530.herokuapp.com/)
+
+<a href="https://sheltered-earth-45530.herokuapp.com/" target=_blank>View Demo</a>
 
 
 
