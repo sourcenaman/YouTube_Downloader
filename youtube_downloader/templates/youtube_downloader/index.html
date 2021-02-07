@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block content %}
+<form method="post" action="{% url 'youtube_downloader:index' %}">
+  {% csrf_token %} {% if form %}
+  <div class="form-group mt-5 mb-2">
+    <label for="exampleInputEmail1">Enter YouTube URL</label>
+    <input type="text" class="form-control" name="url" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  {% endif %}
+</form>
+<ul class="list-group mt-4">
+  {% for resolution, property in resolutions.items %} {% if property.progressive == True or resolution == "audio" %}
+  <a class="list-group-item list-group-item-action" href="{{property.url}}" target="_blank" download="{{title}}"
+    >{{resolution}}</a
+  >
+  {% elif resolution != "Title" %}
+  <a
+    class="list-group-item list-group-item-action"
+    data-resolution="{{resolution}}"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    >{{resolution}}</a
+  >
+  {% endif %} {% endfor %}
+</ul>
+{% if token %}
+<div class="progress" id="progress">
+  <div
+    class="progress-bar progress-bar-striped progress-bar-animated"
+    role="progressbar"
+    id="progress-bar"
+    aria-valuenow="0"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    style="width: 0%"
+    data-token="{{token}}"
+  ></div>
+</div>
+{% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enter Email</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="{% url 'youtube_downloader:download' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="mb-3">
+            <input type="text" class="form-control" name="resolution" id="resolution" readonly />
+          </div>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              id="email"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" onclick="showProgress()">Proceed</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
