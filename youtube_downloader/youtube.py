@@ -105,14 +105,3 @@ class Video():
             self.previousprogress = self.liveprogress
         elif self.liveprogress == 100:
             self.previousprogress = 0
-
-
-# video_url = input('Enter video url: ')
-# #video_url = 'https://www.youtube.com/watch?v=qp8u-frRAnU'
-# video = Video(video_url)
-# video.check()
-# resolution = video.resolution()
-# for i in resolution.keys():
-#     print(f'{i}')
-# download = input("Select resolution to download: ")
-# video.download(download)

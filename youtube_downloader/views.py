@@ -42,9 +42,9 @@ class Download():
             self.download_thread.start()
             email = request.POST['email']
             title = self.video.title
-            # email_thread = threading.Thread(
-            #     target=self.send_email, args=(email, title, self.base_url))
-            # email_thread.start()
+            email_thread = threading.Thread(
+                target=self.send_email, args=(email, title, self.base_url))
+            email_thread.start()
             # return redirect("youtube_downloader:progress", token=request.POST['csrfmiddlewaretoken'])
             return redirect('youtube_downloader:index')
 
